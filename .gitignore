@@ -52,15 +52,12 @@ Thumbs.db
 # "mu-plugins" directory
 # "plugins" directory
 # "themes" directory
+# "uploads" contains backups AND images
 wp-content/*
 !wp-content/mu-plugins/
 !wp-content/plugins/
 !wp-content/themes/
-# !wp-content/uploads/
-
-# allow our backups but not images
-wp-content/uploads/*
-!wp-content/uploads/revisr-backups/
+!wp-content/uploads/
 
 # ignore these plugins
 wp-content/plugins/hello.php
