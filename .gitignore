@@ -56,6 +56,10 @@ wp-content/*
 !wp-content/mu-plugins/
 !wp-content/plugins/
 !wp-content/themes/
+# !wp-content/uploads/
+
+# allow our backups but not images
+wp-content/uploads/*
 !wp-content/uploads/revisr-backups/
 
 # ignore these plugins
