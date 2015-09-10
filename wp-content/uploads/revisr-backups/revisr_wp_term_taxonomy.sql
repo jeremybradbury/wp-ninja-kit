@@ -27,7 +27,7 @@ CREATE TABLE `wp_term_taxonomy` (
 
 LOCK TABLES `wp_term_taxonomy` WRITE;
 /*!40000 ALTER TABLE `wp_term_taxonomy` DISABLE KEYS */;
-INSERT INTO `wp_term_taxonomy` VALUES (1,1,'category','',0,1),(2,2,'presentation','{\"col-1\":[\"slide-29\",\"slide-30\",\"slide-31\"],\"col-2\":[\"slide-32\",\"slide-33\"],\"col-3\":[\"slide-34\",\"slide-35\"],\"col-4\":[\"slide-36\",\"slide-37\"],\"col-5\":[\"slide-38\",\"slide-39\"]}',0,1);
+INSERT INTO `wp_term_taxonomy` VALUES (1,1,'category','',0,1),(2,2,'presentation','{\"col-1\":[\"slide-44\"],\"col-2\":[\"slide-29\",\"slide-30\",\"slide-31\"],\"col-3\":[\"slide-32\",\"slide-33\"],\"col-4\":[\"slide-34\",\"slide-35\"],\"col-5\":[\"slide-36\",\"slide-37\"],\"col-6\":[\"slide-38\",\"slide-39\",\"slide-45\"]}',0,1);
 /*!40000 ALTER TABLE `wp_term_taxonomy` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
