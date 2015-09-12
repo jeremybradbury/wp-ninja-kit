@@ -38,7 +38,14 @@
 			</div><!-- .site-branding -->
 		</header><!-- .site-header -->
 
-		<?php get_sidebar(); ?>
+		<?php //get_sidebar(); ?>
+		<div id="secondary" class="secondary">
+      <div id="widget-area" class="widget-area" role="complementary">
+        <div ng-repeat="widget in widgets"> 
+          <div ng-bind-html="trust(widget.widget)"></div>
+        </div><!-- ng-widget -->
+      </div><!-- .widget-area -->
+    </div><!-- .secondary -->
 	</div><!-- .sidebar -->
 
 	<div id="content" class="site-content">

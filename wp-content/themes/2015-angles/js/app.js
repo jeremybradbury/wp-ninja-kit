@@ -51,11 +51,33 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       window.top.location.href = '/not-found-error';
     });
   };
+    
+  // get sidebar method
+  $scope.getSidebar = function ( id ) {
+    var param = { 'sidebar_id' : 'sidebar-1' };
+    var theurl = $scope.apiuri + 'widgets/get_sidebar';
+    if (typeof id !== 'undefined') { param = { 'sidebar_id' : id }; } 
+
+  	// load widgets from the WordPress API
+    $http({
+      method: 'GET',
+      url: theurl,
+      params: param,
+    }).
+    success( function( data, status, headers, config ) {
+      console.log( data.widgets );
+      $scope.widgets = data.widgets; // return 'widgets'
+    }).
+    error(function(data, status, headers, config) {
+      console.log(data, status, headers, config);
+    });
+  };
   
   // initial load
   var pageNav = window.top.location.hash;
   pageNav = pageNav.replace('#','');
   $scope.getPost(pageNav);
+  $scope.getSidebar();
   
   // primary navigation
   jQuery(window).bind('hashchange', function () {
