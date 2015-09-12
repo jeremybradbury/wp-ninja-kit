@@ -55,20 +55,24 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       $scope.watchLast = Date.now();
     }).
     error(function(data, status, headers, config) {
-      // load home and leave error in console
-      //$scope.getPost();
-      // OR bail to  bail to 404
-      window.top.location.href = '/not-found#error';
+      // bail to 404
+      window.top.location.href = '/not-found-error';
     });
   };
   
-  // watch url for # changes and navigate (external or manually typed links)
-  $scope.$watch(function () {
-      return location.hash
-  }, function (value) {
-    	value = value.replace('#','');
-    	//console.log('calling watcher', value);
-      $scope.getPost(value);
-  });
+  // initial load
+  var pageNav = window.top.location.hash;
+  pageNav = pageNav.replace('#','');
+  $scope.getPost(pageNav);
+  
+  // primary navigation
+  jQuery(window).bind('hashchange', function () {
+    var pageNav = window.top.location.hash;
+  	pageNav = pageNav.replace('#','');
+    // console.log('navigating to: /', pageNav);
+    $scope.getPost(pageNav);
+	});
+  
+
 
 }]);

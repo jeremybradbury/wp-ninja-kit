@@ -32,7 +32,7 @@ get_header(); ?>
             <?php if ( is_single() ) : ?>
                 <h1 class="entry-title">{{post.title}}</h1>
             <?php	else : ?>
-                <h2 class="entry-title"><a ng-click="getPost(post.slug)" href="#{{post.slug}}" rel="bookmark">{{post.title}}</a></h2>
+                <h2 class="entry-title"><a href="#{{post.slug}}" rel="bookmark">{{post.title}}</a></h2>
             <?php endif; ?>
           </header><!-- .entry-header -->
         
