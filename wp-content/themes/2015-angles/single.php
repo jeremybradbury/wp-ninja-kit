@@ -11,37 +11,38 @@
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-
-			<?php
-		// Start the loop.
-		while ( have_posts() ) : the_post();
-
-			/*
-			 * Include the post format-specific template for the content. If you want to
-			 * use this in a child theme, then include a file called called content-___.php
-			 * (where ___ is the post format) and that will be used instead.
-			 */
-			get_template_part( 'content', get_post_format() );
-
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
-
-			// Previous/next post navigation.
-			the_post_navigation( array(
-				'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'twentyfifteen' ) . '</span> ' .
-					'<span class="screen-reader-text">' . __( 'Next post:', 'twentyfifteen' ) . '</span> ' .
-					'<span class="post-title">%title</span>',
-				'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'twentyfifteen' ) . '</span> ' .
-					'<span class="screen-reader-text">' . __( 'Previous post:', 'twentyfifteen' ) . '</span> ' .
-					'<span class="post-title">%title</span>',
-			) );
-
-		// End the loop.
-		endwhile;
-		?>
-
+			<div ng-repeat="post in posts | filter:{ id: <?php the_ID(); ?> }">
+				<?php 
+            $classes = implode(" ",array_diff(get_post_class(), array("post-".get_the_ID())));
+        ?>
+        <article id="post-{{post.id}}" class="post-{{post.id}} <?php echo $classes ?>">
+          <?php
+            // Post thumbnail.
+            //twentyfifteen_post_thumbnail();
+          ?>
+        
+          <header class="entry-header">
+          	<h1 class="entry-title">{{post.title}}</h1>
+          </header><!-- .entry-header -->
+        
+          <div class="entry-content">
+            <article>
+              <div ng-bind-html="trust(post.content)"></div>
+            </article>
+          </div><!-- .entry-content -->
+        
+          <?php
+            // Author bio.
+            if ( get_the_author_meta( 'description' ) ) :
+              get_template_part( 'author-bio' );
+            endif;
+          ?>
+        
+          <footer class="entry-footer">
+            <?php // twentyfifteen_entry_meta(); ?>
+            <?php edit_post_link( __( 'Edit', 'twentyfifteen' ), '<span class="edit-link">', '</span>' ); ?>
+          </footer><!-- .entry-footer -->
+        </article></div><!-- #post-## -->
 		</main><!-- .site-main -->
 	</div><!-- .content-area -->
 

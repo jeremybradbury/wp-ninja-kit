@@ -21,7 +21,7 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?> ng-controller="wordpress">
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'twentyfifteen' ); ?></a>
 
@@ -30,7 +30,7 @@
 			<div class="site-branding">
 				<?php
 					if ( is_front_page() && is_home() ) : ?>
-						<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+						<h1 class="site-title"><a ng-click="getPost(post.slug)" href="#" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 					<?php else : ?>
 						<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
 					<?php endif;

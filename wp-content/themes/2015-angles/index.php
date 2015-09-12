@@ -18,14 +18,38 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-
-			<div ng-controller="wordpress">
-				<article ng-repeat="post in posts">
-					<h3>{{ post.title.rendered }}</h3>
-					<div ng-bind-html="trust(post.excerpt.rendered)"></div>
-				</article>
-			</div>
-
+      <div ng-repeat="post in posts">
+				<?php 
+					$classes = implode(" ",array_diff(get_post_class(), array("post-".get_the_ID())));
+        ?>
+        <article id="post-{{post.id}}" class="post-{{post.id}} <?php echo $classes ?>">
+          <?php
+            // Post thumbnail.
+            twentyfifteen_post_thumbnail();
+          ?>
+        
+          <header class="entry-header">
+            <?php if ( is_single() ) : ?>
+                <h1 class="entry-title">{{post.title}}</h1>
+            <?php	else : ?>
+                <h2 class="entry-title"><a ng-click="getPost(post.slug)" href="#{{post.slug}}" rel="bookmark">{{post.title}}</a></h2>
+            <?php endif; ?>
+          </header><!-- .entry-header -->
+        
+          <div class="entry-content">
+            <article>
+              <div ng-bind-html="trust(post.content)"></div>
+            </article>
+          </div><!-- .entry-content -->
+        
+          <footer class="entry-footer">
+            <?php twentyfifteen_entry_meta(); ?>
+            <?php edit_post_link( __( 'Edit', 'twentyfifteen' ), '<span class="edit-link">', '</span>' ); ?>
+          </footer><!-- .entry-footer -->
+        
+        </article><!-- #post-## -->
+        
+			</div> 
 		</main><!-- .site-main -->
 	</div><!-- .content-area -->
 

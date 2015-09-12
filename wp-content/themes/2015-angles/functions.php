@@ -19,7 +19,7 @@ function angles_scripts() {
 	// Variables for app script
 	wp_localize_script( 'angles-js', 'anglesJS',
 		array(
-			'api' => get_bloginfo( 'wpurl' ) . '/wp-json/wp/v2/posts',
+			'api' => get_bloginfo( 'wpurl' ) . '/api/',
 		)
 	);
 

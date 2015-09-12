@@ -9,48 +9,28 @@
  * @since Twenty Fifteen 1.0
  */
 ?>
-
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<?php 
+    $classes = implode(" ",array_diff(get_post_class(), array("post-".get_the_ID())));
+?>
+<article id="post-{{post.id}}" class="post-{{post.id}} <?php echo $classes ?>">
 	<?php
 		// Post thumbnail.
 		twentyfifteen_post_thumbnail();
 	?>
 
 	<header class="entry-header">
-		<?php
-			if ( is_single() ) :
-				the_title( '<h1 class="entry-title">', '</h1>' );
-			else :
-				the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
-			endif;
-		?>
+		<?php if ( is_single() ) : ?>
+				<h1 class="entry-title">{{post.title.rendered}}</h1>
+		<?php	else : ?>
+				<h2 class="entry-title"><a href="{{post.link}}" rel="bookmark">{{post.title.rendered}}</a></h2>
+		<?php endif; ?>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
-		<?php
-			/* translators: %s: Name of current post */
-			the_content( sprintf(
-				__( 'Continue reading %s', 'twentyfifteen' ),
-				the_title( '<span class="screen-reader-text">', '</span>', false )
-			) );
-
-			wp_link_pages( array(
-				'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentyfifteen' ) . '</span>',
-				'after'       => '</div>',
-				'link_before' => '<span>',
-				'link_after'  => '</span>',
-				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'twentyfifteen' ) . ' </span>%',
-				'separator'   => '<span class="screen-reader-text">, </span>',
-			) );
-		?>
+    <article>
+      <div ng-bind-html="trust(post.excerpt.rendered)"></div>
+    </article>
 	</div><!-- .entry-content -->
-
-	<?php
-		// Author bio.
-		if ( is_single() && get_the_author_meta( 'description' ) ) :
-			get_template_part( 'author-bio' );
-		endif;
-	?>
 
 	<footer class="entry-footer">
 		<?php twentyfifteen_entry_meta(); ?>
