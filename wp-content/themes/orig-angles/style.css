@@ -1,0 +1,29 @@
+/*
+Theme Name: 2015 Angles
+Version: 0.0.1
+Theme URI: https://github.com/jeremybradbury/wp-2015-angles
+Author: Jeremy Bradbury
+Author URI: https://github.com/jeremybradbury
+Description: The Twentyfifteen theme converted to AngularJS. Relies on the JSON WP API.
+*/
+
+body {
+	background: #fafafa;
+	font-family: sans-serif;
+}
+.col-width {
+	max-width: 680px;
+	padding: 0 1.5em;
+	margin: 3em auto;
+}
+header {
+	display:block;
+	margin-bottom: 3em;
+	text-align: center;
+}
+article {
+	display:block;
+	background: #fff;
+	padding: 1.5em;
+	margin-bottom: 1.5em;
+}
