@@ -13,8 +13,7 @@
  * @subpackage Twenty_Fifteen
  * @since Twenty Fifteen 1.0
  */
-
-get_header(); ?>
+  get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
@@ -24,26 +23,23 @@ get_header(); ?>
         ?>
         <article id="post-{{post.id}}" class="post-{{post.id}} <?php echo $classes ?>">
           <?php
-            // Post thumbnail.
+            // Post thumbnail.  
+						// TODO: replace
             twentyfifteen_post_thumbnail();
           ?>
-        
+          
           <header class="entry-header">
-            <?php if ( is_single() ) : ?>
-                <h1 class="entry-title">{{post.title}}</h1>
-            <?php	else : ?>
-                <h2 class="entry-title"><a href="#{{post.slug}}" rel="bookmark">{{post.title}}</a></h2>
-            <?php endif; ?>
-          </header><!-- .entry-header -->
-        
+            <h2 class="entry-title"><a href="#{{post.slug}}" rel="bookmark">{{post.title}}</a></h2>
+          </header><!-- .entry-header -->  
+          
           <div class="entry-content">
-            <article>
-              <div ng-bind-html="trust(post.content)"></div>
-            </article>
+            <article ng-bind-html="trust(post.content)"></article>
           </div><!-- .entry-content -->
-        
+          
           <footer class="entry-footer">
-            <?php twentyfifteen_entry_meta(); ?>
+            <?php // TODO: replace 
+									// twentyfifteen_entry_meta(); 
+						?>
             <?php edit_post_link( __( 'Edit', 'twentyfifteen' ), '<span class="edit-link">', '</span>' ); ?>
           </footer><!-- .entry-footer -->
         

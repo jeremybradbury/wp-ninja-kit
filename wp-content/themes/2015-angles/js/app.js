@@ -15,43 +15,56 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
   $scope.trust = function (html) { return $sce.trustAsHtml(html); };
   
   // get post(s) method
-  $scope.getPost = function ( id ) {
+  $scope.getPosts = function ( id ) {
     var param = {};
-    var theurl = $scope.apiuri + 'get_posts';
-    var single = false;
     if (typeof id !== 'undefined') {
-      if(id!=""){
-        // single post if id is passed
-        param = { 'id' : id };
-        theurl = $scope.apiuri + 'get_post';
-        single = true;
-        // slug provided
-        if(isNaN(id)){
-      		param = { 'slug' : id };
-      	}
-      } 
+      if( id.trim() != '' ){ return $scope.getPost( id ); }   
     }
   	// load posts from the WordPress API
     $http({
       method: 'GET',
-      url: theurl,
+      url: $scope.apiuri + 'get_posts',
       params: param,
     }).
     success( function( data, status, headers, config ) {
       //console.log( $scope.apiuri );
-      if(single){
-        $scope.posts = [data.post]; // return lone 'post' array wrapped
-      } else {
-      	$scope.posts = data.posts; // return 'posts' array
-      }
-      //console.log( $scope.posts );
+      $scope.posts = data.posts; // return 'posts' array
+      $scope.post = false;
+      //console.log( $scope.posts.length );
     }).
     error(function(data, status, headers, config) {
       // bail to 404
       window.top.location.href = '/not-found-error';
     });
   };
-    
+  
+  // get post method
+  $scope.getPost = function ( id ) {
+    if (typeof id === 'undefined') {
+     return console.log('id required', id); 
+    }
+    // single post if id is passed
+    var param = { 'id' : id };
+    // slug provided
+    if(isNaN(id)){ param = { 'slug' : id }; }
+    // load post from the WordPress API
+    $http({
+      method: 'GET',
+      url: $scope.apiuri + 'get_post',
+      params: param,
+    }).
+    success( function( data, status, headers, config ) {
+      //console.log( $scope.apiuri );
+      $scope.posts = [data.post]; // return lone 'post' array wrapped
+      $scope.post = data.post; // return lone 'post' 
+      //console.log( $scope.posts.length );
+    }).
+    error(function(data, status, headers, config) {
+      // bail to 404
+      window.top.location.href = '/not-found-error';
+    });
+  };
+
   // get sidebar method
   $scope.getSidebar = function ( id ) {
     var param = { 'sidebar_id' : 'sidebar-1' };
@@ -65,7 +78,7 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       params: param,
     }).
     success( function( data, status, headers, config ) {
-      console.log( data.widgets );
+      // console.log( data.widgets );
       $scope.widgets = data.widgets; // return 'widgets'
     }).
     error(function(data, status, headers, config) {
@@ -73,20 +86,18 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
     });
   };
   
-  // initial load
-  var pageNav = window.top.location.hash;
-  pageNav = pageNav.replace('#','');
-  $scope.getPost(pageNav);
-  $scope.getSidebar();
-  
   // primary navigation
   jQuery(window).bind('hashchange', function () {
     var pageNav = window.top.location.hash;
   	pageNav = pageNav.replace('#','');
     // console.log('navigating to: /', pageNav);
-    $scope.getPost(pageNav);
+    $scope.getPosts(pageNav);
 	});
   
-
+  // initial load
+  var pageNav = window.top.location.hash;
+  pageNav = pageNav.replace('#','');
+  $scope.getPosts(pageNav);
+  $scope.getSidebar();
 
 }]);
