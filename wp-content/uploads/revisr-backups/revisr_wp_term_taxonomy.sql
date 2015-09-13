@@ -22,12 +22,12 @@ CREATE TABLE `wp_term_taxonomy` (
   PRIMARY KEY (`term_taxonomy_id`),
   UNIQUE KEY `term_id_taxonomy` (`term_id`,`taxonomy`),
   KEY `taxonomy` (`taxonomy`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `wp_term_taxonomy` WRITE;
 /*!40000 ALTER TABLE `wp_term_taxonomy` DISABLE KEYS */;
-INSERT INTO `wp_term_taxonomy` VALUES (1,1,'category','',0,1),(2,2,'presentation','{\"col-1\":[\"slide-44\"],\"col-2\":[\"slide-29\",\"slide-30\",\"slide-31\"],\"col-3\":[\"slide-32\",\"slide-33\"],\"col-4\":[\"slide-34\",\"slide-35\"],\"col-5\":[\"slide-36\",\"slide-37\"],\"col-6\":[\"slide-38\",\"slide-39\",\"slide-45\"]}',0,1);
+INSERT INTO `wp_term_taxonomy` VALUES (2,2,'presentation','{\"col-1\":[\"slide-44\"],\"col-2\":[\"slide-29\",\"slide-30\",\"slide-31\"],\"col-3\":[\"slide-32\",\"slide-33\"],\"col-4\":[\"slide-34\",\"slide-35\"],\"col-5\":[\"slide-36\",\"slide-37\"],\"col-6\":[\"slide-38\",\"slide-39\",\"slide-45\"]}',0,1),(3,3,'category','',0,4),(4,4,'category','',0,5),(5,5,'category','',0,4),(6,6,'category','',0,5),(7,7,'category','',0,5),(8,8,'category','',0,5);
 /*!40000 ALTER TABLE `wp_term_taxonomy` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
