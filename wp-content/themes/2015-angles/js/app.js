@@ -5,6 +5,10 @@ angles.run( ['$rootScope', function($rootScope) {
 
 	// Variables defined by wp_localize_script
 	$rootScope.apiuri = anglesJS.api;
+  
+  // blur anchors
+	jQuery("a[rel='home']").focus(function(){this.blur()});
+  $rootScope.blur = function () { jQuery("a[rel='home']").focus(); return false; };
 
 }]);
 
@@ -16,7 +20,7 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
   
   // get post(s) method
   $scope.getPosts = function ( id ) {
-    var param = {};
+    var param = { };
     if (typeof id !== 'undefined') {
       if( id.trim() != '' ){ return $scope.getPost( id ); }   
     }
@@ -30,7 +34,7 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       //console.log( $scope.apiuri );
       $scope.posts = data.posts; // return 'posts' array
       $scope.post = false;
-      //console.log( $scope.posts.length );
+      console.log( $scope.posts );
     }).
     error(function(data, status, headers, config) {
       // bail to 404
@@ -46,7 +50,9 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
     // single post if id is passed
     var param = { 'id' : id };
     // slug provided
-    if(isNaN(id)){ param = { 'slug' : id }; }
+    if(isNaN(id)){ 
+      param = { 'slug' : id }; 
+    }
     // load post from the WordPress API
     $http({
       method: 'GET',
@@ -88,8 +94,7 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
   
   // primary navigation
   jQuery(window).bind('hashchange', function () {
-    var pageNav = window.top.location.hash;
-  	pageNav = pageNav.replace('#','');
+    var pageNav = window.top.location.hash.replace('#','');
     // console.log('navigating to: /', pageNav);
     $scope.getPosts(pageNav);
 	});

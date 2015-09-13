@@ -21,7 +21,7 @@
 				<?php 
 					$classes = implode(" ",array_diff(get_post_class(), array("post-".get_the_ID())));
         ?>
-        <article id="post-{{post.id}}" class="post-{{post.id}} <?php echo $classes ?>">
+        <article id="post-{{post.id}}" class="post-{{post.id}} <?php echo $classes ?>" tabindex="100">
           <?php
             // Post thumbnail.  
 						// TODO: replace
@@ -29,7 +29,7 @@
           ?>
           
           <header class="entry-header">
-            <h2 class="entry-title"><a href="#{{post.slug}}" rel="bookmark">{{post.title}}</a></h2>
+            <h2 class="entry-title"><a ng-click="blur()" href="#{{post.slug}}" rel="bookmark">{{post.title}}</a></h2>
           </header><!-- .entry-header -->  
           
           <div class="entry-content">
@@ -38,7 +38,7 @@
           
           <footer class="entry-footer">
             <?php // TODO: replace 
-									// twentyfifteen_entry_meta(); 
+							//twentyfifteen_entry_meta(); 
 						?>
             <?php edit_post_link( __( 'Edit', 'twentyfifteen' ), '<span class="edit-link">', '</span>' ); ?>
           </footer><!-- .entry-footer -->
