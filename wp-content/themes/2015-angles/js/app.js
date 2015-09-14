@@ -20,8 +20,7 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
   
   // get post(s) method
   $scope.getPosts = function ( id ) {
-    var param = { };
-    var page;
+    var param = { }, page;
     if (typeof id !== 'undefined' && id.trim() != '' ){ 
       if(id.search('page')>=0) {
         // wee we're paging
@@ -47,6 +46,8 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       $scope.posts = parseInt(data.count_total);
       $scope.pages = data.pages;
       $scope.post = false;
+      if ('undefined' !== typeof $scope.prev) { $scope.prev = undefined; }
+    	if ('undefined' !== typeof $scope.next) { $scope.next = undefined; }
       console.log( $scope);
     }).
     error(function(data, status, headers, config) {
@@ -60,6 +61,7 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
     if (typeof id === 'undefined') {
      return console.log('id required', id); 
     }
+    
     // single post if id is passed
     var param = { 'id' : id };
     // slug provided
@@ -76,6 +78,19 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       console.log( id );
       $scope.data = [data.post]; // return lone 'post' array wrapped
       $scope.post = data.post; // return lone 'post' 
+      $scope.pages = 0;
+      $scope.p = -1;
+      if('undefined' !== typeof data.next_url) {
+        $scope.prev = data.next_url.split('/')[3];
+      } else {
+      	$scope.p = 1;
+      }
+      if('undefined' !== typeof data.previous_url) {
+        $scope.next = data.previous_url.split('/')[3];
+      } else {
+      	$scope.p = 0;
+      }
+      console.log( data, $scope );
       //console.log( $scope.posts.length );
     }).
     error(function(data, status, headers, config) {
@@ -117,6 +132,25 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
     }
     return ret;
   };
+  
+  $scope.nextPage = function(){
+  	if ('undefined' !== typeof $scope.next) {
+      return $scope.next;
+    } else {
+    	if ('undefined' !== typeof $scope.p) {
+      	return 'page/' + ($scope.p + 1);
+    	}
+    }
+  }
+  $scope.prevPage = function(){
+  	if ('undefined' !== typeof $scope.prev) {
+      return $scope.prev;
+    } else {
+      if ('undefined' !== typeof $scope.p) {
+      	return 'page/' + ($scope.p - 1);
+    	} 
+    }
+  }
   
   // primary navigation
   jQuery(window).bind('hashchange', function () {
