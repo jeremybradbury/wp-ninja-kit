@@ -17,6 +17,14 @@
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
+      <nav class="navigation pagination" role="navigation">
+        <h2 class="screen-reader-text">Posts navigation</h2>
+        <div class="nav-links">
+          <a class="prev page-numbers" ng-click="blur()" ng-class="{disabled: p == 1}" href="#{{prevPage()}}">Prev page</a>
+          <a class="page-numbers" ng-click="blur()" ng-repeat="n in range(pages)" ng-class="{current: n == p}" href="#page/{{n}}"><span class="meta-nav screen-reader-text">Page </span>{{n}}</a>
+          <a class="next page-numbers" ng-click="blur()" ng-class="{disabled: p == pages}" href="#{{nextPage()}}">Next page</a>
+        </div>
+    	</nav>
       <div ng-repeat="post in data">
 				<?php 
 					$classes = implode(" ",array_diff(get_post_class(), array("post-".get_the_ID())));
@@ -27,7 +35,6 @@
 						// TODO: replace
             twentyfifteen_post_thumbnail();
           ?>
-          
           <header class="entry-header">
             <h2 class="entry-title"><a ng-click="blur()" href="#{{post.slug}}" rel="bookmark">{{post.title}}</a></h2>
           </header><!-- .entry-header -->  
@@ -45,14 +52,6 @@
         
         </article><!-- #post-## -->
 			</div> 
-      <nav class="navigation pagination" role="navigation">
-        <h2 class="screen-reader-text">Posts navigation</h2>
-        <div class="nav-links">
-          <a class="prev page-numbers" ng-click="blur()" ng-class="{disabled: p == 1}" href="#{{prevPage()}}">Prev page</a>
-          <a class="page-numbers" ng-click="blur()" ng-repeat="n in range(pages)" ng-class="{current: n == p}" href="#page/{{n}}"><span class="meta-nav screen-reader-text">Page </span>{{n}}</a>
-          <a class="next page-numbers" ng-click="blur()" ng-class="{disabled: p == pages}" href="#{{nextPage()}}">Next page</a>
-        </div>
-    </nav>
 		</main><!-- .site-main -->
 	</div><!-- .content-area -->
 
