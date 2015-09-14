@@ -21,8 +21,19 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
   // get post(s) method
   $scope.getPosts = function ( id ) {
     var param = { };
-    if (typeof id !== 'undefined') {
-      if( id.trim() != '' ){ return $scope.getPost( id ); }   
+    var page;
+    if (typeof id !== 'undefined' && id.trim() != '' ){ 
+      if(id.search('page')>=0) {
+        // wee we're paging
+        $scope.p = parseInt(id.split('/')[1]);
+        console.log($scope.p);
+        param = { 'page' : $scope.p }
+      } else {
+            // single post request
+           return $scope.getPost( id );
+      }   
+    } else {
+      $scope.p = 1;
     }
   	// load posts from the WordPress API
     $http({
@@ -32,9 +43,11 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
     }).
     success( function( data, status, headers, config ) {
       //console.log( $scope.apiuri );
-      $scope.posts = data.posts; // return 'posts' array
+      $scope.data = data.posts; // return 'posts' array
+      $scope.posts = parseInt(data.count_total);
+      $scope.pages = data.pages;
       $scope.post = false;
-      console.log( $scope.posts );
+      console.log( $scope);
     }).
     error(function(data, status, headers, config) {
       // bail to 404
@@ -60,8 +73,8 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       params: param,
     }).
     success( function( data, status, headers, config ) {
-      //console.log( $scope.apiuri );
-      $scope.posts = [data.post]; // return lone 'post' array wrapped
+      console.log( id );
+      $scope.data = [data.post]; // return lone 'post' array wrapped
       $scope.post = data.post; // return lone 'post' 
       //console.log( $scope.posts.length );
     }).
@@ -90,6 +103,19 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
     error(function(data, status, headers, config) {
       console.log(data, status, headers, config);
     });
+  };
+  
+  // return indexed array of range lengthfor paging
+  $scope.range = function (start, end) {
+    var ret = [];
+    if (!end) {
+      end = start +1;
+      start = 1;
+    }
+    for (var i = start; i < end; i++) {
+      ret.push(i);
+    }
+    return ret;
   };
   
   // primary navigation

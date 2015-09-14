@@ -5996,3 +5996,4 @@ p > video {
 		padding: 0;
 	}
 }
+.disabled { display: none !important; }
