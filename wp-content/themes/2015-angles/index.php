@@ -21,7 +21,7 @@
 				<?php 
 					$classes = implode(" ",array_diff(get_post_class(), array("post-".get_the_ID())));
         ?>
-        <article id="post-{{post.id}}" class="post-{{post.id}} <?php echo $classes ?>" tabindex="100">
+        <article id="post-{{post.id}}" class="post-{{post.id}} <?php echo $classes ?>">
           <?php
             // Post thumbnail.  
 						// TODO: replace
