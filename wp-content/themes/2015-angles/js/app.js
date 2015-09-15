@@ -14,11 +14,9 @@ angles.run( ['$rootScope', function($rootScope) {
 
 // Add a controller
 angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $sce, $http ) { 
-  
-  // trust html method
+/** content **/
   $scope.trust = function (html) { return $sce.trustAsHtml(html); };
-  
-  // get post(s) method
+// getPosts()
   $scope.getPosts = function ( id ) {
     var param = { }, page;
     if (typeof id !== 'undefined' && id.trim() != '' ){ 
@@ -34,41 +32,28 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
     } else {
       $scope.p = 1;
     }
-  	// load posts from the WordPress API
     $http({
       method: 'GET',
       url: $scope.apiuri + 'get_posts',
       params: param,
     }).
     success( function( data, status, headers, config ) {
-      //console.log( $scope.apiuri );
       $scope.data = data.posts; // return 'posts' array
       $scope.posts = parseInt(data.count_total);
       $scope.pages = data.pages;
-      $scope.post = false;
       if ('undefined' !== typeof $scope.prev) { $scope.prev = undefined; }
     	if ('undefined' !== typeof $scope.next) { $scope.next = undefined; }
-      console.log( $scope);
+      //console.log( $scope);
     }).
     error(function(data, status, headers, config) {
-      // bail to 404
-      window.top.location.href = '/not-found-error';
+      window.top.location.href = '/not-found-error'; // bail to 404
     });
   };
-  
-  // get post method
+// getPost()
   $scope.getPost = function ( id ) {
-    if (typeof id === 'undefined') {
-     return console.log('id required', id); 
-    }
-    
-    // single post if id is passed
-    var param = { 'id' : id };
-    // slug provided
-    if(isNaN(id)){ 
-      param = { 'slug' : id }; 
-    }
-    // load post from the WordPress API
+    if ('undefined' === typeof id) { return console.log('id required', id); }
+    var param = { 'id' : id }; // single post if id is passed
+    if(isNaN(id)){ param = { 'slug' : id }; } // slug provided
     $http({
       method: 'GET',
       url: $scope.apiuri + 'get_post',
@@ -76,36 +61,24 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
     }).
     success( function( data, status, headers, config ) {
       console.log( id );
-      $scope.data = [data.post]; // return lone 'post' array wrapped
-      $scope.post = data.post; // return lone 'post' 
+      $scope.data = [data.post]; // return 'post' array wrapped 
       $scope.pages = 0;
       $scope.p = -1;
-      if('undefined' !== typeof data.next_url) {
-        $scope.prev = data.next_url.split('/')[3];
-      } else {
-      	$scope.p = 1;
-      }
-      if('undefined' !== typeof data.previous_url) {
-        $scope.next = data.previous_url.split('/')[3];
-      } else {
-      	$scope.p = 0;
-      }
-      console.log( data, $scope );
-      //console.log( $scope.posts.length );
+      if('undefined' !== typeof data.next_url) { $scope.prev = data.next_url.split('/')[3]; } 
+      else { $scope.p = 1; }
+      if('undefined' !== typeof data.previous_url) { $scope.next = data.previous_url.split('/')[3]; } 
+      else { $scope.p = 0; }
+      //console.log( data, $scope );
     }).
     error(function(data, status, headers, config) {
-      // bail to 404
-      window.top.location.href = '/not-found-error';
+      window.top.location.href = '/not-found-error'; // bail to 404
     });
   };
-
-  // get sidebar method
+// getSidebar()
   $scope.getSidebar = function ( id ) {
     var param = { 'sidebar_id' : 'sidebar-1' };
     var theurl = $scope.apiuri + 'widgets/get_sidebar';
-    if (typeof id !== 'undefined') { param = { 'sidebar_id' : id }; } 
-
-  	// load widgets from the WordPress API
+    if ('undefined' !== typeof id) { param = { 'sidebar_id' : id }; } 
     $http({
       method: 'GET',
       url: theurl,
@@ -119,50 +92,39 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       console.log(data, status, headers, config);
     });
   };
+/** /content **/
   
-  // return indexed array of range lengthfor paging
+/** route **/
   $scope.range = function (start, end) {
     var ret = [];
-    if (!end) {
-      end = start +1;
-      start = 1;
-    }
-    for (var i = start; i < end; i++) {
-      ret.push(i);
-    }
-    return ret;
+    if (!end) { end = start +1; start = 1; }
+    for (var i = start; i < end; i++) { ret.push(i); }
+    return ret; // indexed array of range length
   };
-  
   $scope.nextPage = function(){
   	if ('undefined' !== typeof $scope.next) {
       return $scope.next;
     } else {
-    	if ('undefined' !== typeof $scope.p) {
-      	return 'page/' + ($scope.p + 1);
-    	}
+    	if ('undefined' !== typeof $scope.p) { return 'page/' + ($scope.p + 1); }
     }
-  }
+  }  
   $scope.prevPage = function(){
   	if ('undefined' !== typeof $scope.prev) {
       return $scope.prev;
     } else {
-      if ('undefined' !== typeof $scope.p) {
-      	return 'page/' + ($scope.p - 1);
-    	} 
+      if ('undefined' !== typeof $scope.p) { return 'page/' + ($scope.p - 1); } 
     }
   }
-  
-  // primary navigation
+// #anchor based navigation
   jQuery(window).bind('hashchange', function () {
-    var pageNav = window.top.location.hash.replace('#','');
-    // console.log('navigating to: /', pageNav);
-    $scope.getPosts(pageNav);
+    var nav = window.top.location.hash.replace('#','');
+    // console.log('navigating to: /', nav);
+    $scope.getPosts(nav);
 	});
-  
-  // initial load
-  var pageNav = window.top.location.hash;
-  pageNav = pageNav.replace('#','');
-  $scope.getPosts(pageNav);
+/** /route **/
+
+// initial content load
+  $scope.getPosts(window.top.location.hash.replace('#',''));
   $scope.getSidebar();
 
 }]);
