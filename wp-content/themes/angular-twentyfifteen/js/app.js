@@ -37,13 +37,16 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       url: $scope.apiuri + 'get_posts',
       params: param,
     }).
-    success( function( data, status, headers, config ) {
+    success( function( data, status, headers, config ) {      
+      for (var u in data.posts) { 
+				data.posts[u].url = $scope.getNav(data.posts[u].url);
+      }
       $scope.data = data.posts; // return 'posts' array
       $scope.posts = parseInt(data.count_total);
       $scope.pages = data.pages;
       if ('undefined' !== typeof $scope.prev) { $scope.prev = undefined; }
     	if ('undefined' !== typeof $scope.next) { $scope.next = undefined; }
-      // console.log( $scope );
+      //console.log( $scope );
     }).
     error(function(data, status, headers, config) {
       window.top.location.href = '/not-found-error'; // bail to 404
@@ -61,14 +64,19 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
     }).
     success( function( data, status, headers, config ) {
       //console.log( id );
-      $scope.data = [data.post]; // return 'post' array wrapped 
+      data.post.url = $scope.getNav(data.post.url); 
       $scope.pages = 0;
       $scope.p = -1;
-      if('undefined' !== typeof data.next_url) { $scope.prev = data.next_url.split('/')[3]; } 
-      else { $scope.p = 1; }
-      if('undefined' !== typeof data.previous_url) { $scope.next = data.previous_url.split('/')[3]; } 
-      else { $scope.p = 0; }
-      //console.log( data, $scope );
+      if('undefined' !== typeof data.next_url) { 
+        $scope.prev = data.next_url.split('/')[3]; 
+        data.next_url = $scope.getNav(data.next_url);
+      } else { $scope.p = 1; }
+      if('undefined' !== typeof data.previous_url) { 
+        $scope.next = data.previous_url.split('/')[3]; 
+      	data.previous_url = $scope.getNav(data.previous_url);
+      } else { $scope.p = 0; }
+      $scope.data = [data.post]; // return 'post' array wrapped
+      console.log( data, $scope );
     }).
     error(function(data, status, headers, config) {
       window.top.location.href = '/not-found-error'; // bail to 404
@@ -85,7 +93,9 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       params: param,
     }).
     success( function( data, status, headers, config ) {
-      // console.log( data.widgets );
+      for (var u in data.widgets) { 
+				data.widgets[u].widget = $scope.getNav(data.widgets[u].widget);
+      }
       $scope.widgets = data.widgets; // return 'widgets'
     }).
     error(function(data, status, headers, config) {
@@ -98,7 +108,13 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
     for (var c in post.categories) { cat+=' category-'+post.categories[c].slug; }
     for (var t in post.tags) { tag += ' tag-' + post.tags[t].slug; }
      post.classes = 'post-' + post.id +' '+ post.type +' type-'+ post.type +' status-'+ post.status +' format-standard'+' hentry' + cat + tag;
-    return post;
+    return post; // use post.classes
+  }
+  $scope.getNav = function(nav){
+  	nav = nav.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig, function($0) {  
+        return $0.replace(window.top.location.host + '/', window.top.location.host + '/#');
+    });
+    return nav;
   }
 
 /** /content **/
