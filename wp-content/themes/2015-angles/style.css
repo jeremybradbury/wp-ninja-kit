@@ -1,10 +1,10 @@
 /*
-Theme Name: 2015 Angles
+Theme Name: Angular Twenty Fifteen
 Version: 0.0.1
-Theme URI: https://github.com/jeremybradbury/wp-2015-angles
+Theme URI: https://github.com/jeremybradbury/wp-angular-twentyfifteen
 Author: Jeremy Bradbury
-Author URI: https://github.com/jeremybradbury
-Description: The Twentyfifteen theme converted to AngularJS. Relies on the JSON WP API. Done: Nav/Paging, "Single", "Index". TODO: Archives, Categories, Tags, Meta.
+Author URI: https://github.com/jeremybradbury?tab=repositories
+Description: The Twentyfifteen theme converted to AngularJS loading via the JSON WP API. Hashes are used for navigation and are being watched so that browser history and permalinking still works. All urls are being converted like this: /page/2 to /#page/2, /?p=123 to /#123, /postname to /#postname (no matter what permalink settings are). Microformats currently unsupported by the public JSON API so standard classes are currently hardcoded. If you navigate away from a /#page to a /page you've the the angular template for incompleteness. *DONE: Nav/Paging, "Single", "Index". *TODO: Archives, Authors, Categories, Tags, Meta and some php template functions. 
 */
 
 
