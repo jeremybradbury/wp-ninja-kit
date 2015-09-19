@@ -23,7 +23,7 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       if(id.search('page')>=0) {
         // wee we're paging
         $scope.p = parseInt(id.split('/')[1]);
-        console.log($scope.p);
+        // console.log($scope.p);
         param = { 'page' : $scope.p }
       } else {
             // single post request
@@ -43,7 +43,7 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       $scope.pages = data.pages;
       if ('undefined' !== typeof $scope.prev) { $scope.prev = undefined; }
     	if ('undefined' !== typeof $scope.next) { $scope.next = undefined; }
-      //console.log( $scope);
+      // console.log( $scope );
     }).
     error(function(data, status, headers, config) {
       window.top.location.href = '/not-found-error'; // bail to 404
@@ -60,7 +60,7 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       params: param,
     }).
     success( function( data, status, headers, config ) {
-      console.log( id );
+      //console.log( id );
       $scope.data = [data.post]; // return 'post' array wrapped 
       $scope.pages = 0;
       $scope.p = -1;
@@ -92,6 +92,15 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       console.log(data, status, headers, config);
     });
   };
+  //
+  $scope.getClasses = function(post) {
+    var cat = '', tag = '';
+    for (var c in post.categories) { cat+=' category-'+post.categories[c].slug; }
+    for (var t in post.tags) { tag += ' tag-' + post.tags[t].slug; }
+     post.classes = 'post-' + post.id +' '+ post.type +' type-'+ post.type +' status-'+ post.status +' format-standard'+' hentry' + cat + tag;
+    return post;
+  }
+
 /** /content **/
   
 /** route **/

@@ -26,10 +26,7 @@
         </div>
     	</nav>
       <div ng-repeat="post in data">
-				<?php 
-					$classes = implode(" ",array_diff(get_post_class(), array("post-".get_the_ID())));
-        ?>
-        <article id="post-{{post.id}}" class="post-{{post.id}} <?php echo $classes ?>">
+        <article id="post-{{post.id}}" class="{{getClasses(post).classes}}">
           <?php
             // Post thumbnail.  
 						// TODO: replace
