@@ -77,7 +77,7 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       	data.previous_url = $scope.getNav(data.previous_url);
       } else { $scope.p = 0; }
       $scope.data = [data.post]; // return 'post' array wrapped
-      console.log( data, $scope );
+      //console.log( data, $scope );
     }).
     error(function(data, status, headers, config) {
       window.top.location.href = '/not-found-error'; // bail to 404
@@ -103,10 +103,10 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       console.log(data, status, headers, config);
     });
   };
-// getClasses(post)
+// addClasses(post)
   // attaches classes that the theme is expecting to the post when requested
-  // usage: <article class="{{getClasses(post).classes}}">
-  $scope.getClasses = function(post) {
+  // usage: <article class="{{addClasses(post).classes}}">
+  $scope.addClasses = function(post) {
     var cat = '', tag = '';
     for (var c in post.categories) { cat += ' category-' + post.categories[c].slug; }
     for (var t in post.tags) { tag += ' tag-' + post.tags[t].slug; }

@@ -26,7 +26,7 @@
         </div>
     	</nav>
       <div ng-repeat="post in data">
-        <article id="post-{{post.id}}" class="{{getClasses(post).classes}}">
+        <article id="post-{{post.id}}" class="{{addClasses(post).classes}}">
           <?php
             // Post thumbnail.  
 						// TODO: replace
