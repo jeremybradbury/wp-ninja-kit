@@ -15,8 +15,9 @@ angles.run( ['$rootScope', function($rootScope) {
 // Add a controller
 angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $sce, $http ) { 
 /** content **/
+// trust(html)
   $scope.trust = function (html) { return $sce.trustAsHtml(html); };
-// getPosts()
+// getPosts(id ~optional)
   $scope.getPosts = function ( id ) {
     var param = { }, page;
     if (typeof id !== 'undefined' && id.trim() != '' ){ 
@@ -52,7 +53,7 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       window.top.location.href = '/not-found-error'; // bail to 404
     });
   };
-// getPost()
+// getPost(id)
   $scope.getPost = function ( id ) {
     if ('undefined' === typeof id) { return console.log('id required', id); }
     var param = { 'id' : id }; // single post if id is passed
@@ -82,7 +83,7 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       window.top.location.href = '/not-found-error'; // bail to 404
     });
   };
-// getSidebar()
+// getSidebar(id)
   $scope.getSidebar = function ( id ) {
     var param = { 'sidebar_id' : 'sidebar-1' };
     var theurl = $scope.apiuri + 'widgets/get_sidebar';
@@ -102,21 +103,31 @@ angles.controller( 'wordpress', ['$scope', '$sce', '$http', function( $scope, $s
       console.log(data, status, headers, config);
     });
   };
-  //
+// getClasses(post)
+  // attaches classes that the theme is expecting to the post when requested
+  // usage: <article class="{{getClasses(post).classes}}">
   $scope.getClasses = function(post) {
     var cat = '', tag = '';
-    for (var c in post.categories) { cat+=' category-'+post.categories[c].slug; }
+    for (var c in post.categories) { cat += ' category-' + post.categories[c].slug; }
     for (var t in post.tags) { tag += ' tag-' + post.tags[t].slug; }
-     post.classes = 'post-' + post.id +' '+ post.type +' type-'+ post.type +' status-'+ post.status +' format-standard'+' hentry' + cat + tag;
-    return post; // use post.classes
+    post.classes = 'post-' + post.id
+                 + ' '+post.type
+                 + ' type-' + post.type
+                 + ' status-' + post.status
+                 + ' format-standard'
+                 + ' hentry'
+                 + cat
+                 + tag;
+    return post;
   }
-  $scope.getNav = function(nav){
-  	nav = nav.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig, function($0) {  
+// getNav(url)
+  // replaces "protocol:host/path/to/page" with "protocol:host/#path/to/page"
+  $scope.getNav = function(url){
+  	url = url.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig, function($0) {  
         return $0.replace(window.top.location.host + '/', window.top.location.host + '/#');
     });
-    return nav;
+    return url;
   }
-
 /** /content **/
   
 /** route **/
