@@ -94,5 +94,6 @@ class InSite_Proxy {
         echo 'window.insiteProxyData.serverOrigin = location.protocol + "' . $insiteConfig['insiteUIServerBase'] . '";';
         echo 'window.insiteProxyData.siteBaseUrl = "' . get_bloginfo('url') . '"';
         echo '</script>';
+        echo '<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">';
     }
 }

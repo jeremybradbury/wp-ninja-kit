@@ -3,7 +3,7 @@
 * Plugin Name: inSite for WP: personalization made easy
 * Plugin URI: http://insite.io
 * Description: inSites are smart, personalized recipes that automatically CHANGE your website at pre determined TRIGGER points (such as Time, Location or Visits etc) to create a richer, more engaged and relevant visitor experience that drives greater conversion.
-* Version: 1.5.4
+* Version: 1.6.6
 * Author: Duda
 * Author URI: http://www.dudamobile.com
 * License: GPLv2 or later
@@ -85,10 +85,44 @@ class InSite_Plugin {
         $insiteVersion = get_option('insite_js_version');
 
         if (get_option('insite_site_id')) {
-           wp_register_script('insite', $insiteConfig['insiteRTScriptBase'] . '/s-' . get_option('insite_site_id') . '/io-script.js' , null, $insiteVersion);
-           wp_enqueue_script('insite');
+           $ioScript = $insiteConfig['insiteRTScriptBase'] . '/s-' . get_option('insite_site_id') . '/io-script.js';
+
+           if ($this->urlExists('http:'.$ioScript)){
+               wp_register_script('insite', $ioScript, null, $insiteVersion);
+               wp_enqueue_script('insite');
+           }
         }
     }
+
+    function urlExists($url){
+        try {
+           $headers=$this->getHeaders($url);
+           return stripos($headers[0],"200 OK")?true:false;
+    } catch (Exception $e) {
+            return true;
+        }
+
+    }
+
+
+    function getHeaders($url) {
+          if ( ini_get( 'allow_url_fopen' ) ) {
+            return get_headers( $url );
+          } else {
+            $ch = curl_init( $url );
+
+            curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+            curl_setopt( $ch, CURLOPT_HEADER, true );
+            curl_setopt( $ch, CURLOPT_NOBODY, true );
+
+            $content = curl_exec( $ch );
+
+            curl_close( $ch );
+
+            return array($content);
+          }
+    }
+
 
     public function checkProxyMode () {
         if (!isset($_GET[self::PROXY_MODE_PARAM])) {
@@ -153,7 +187,8 @@ class InSite_Plugin {
     }
 
     public function addPostMarker ($content) {
-        return '<div class="io-post-marker" style="display:none"></div>' . $content;
+        //return '<div class="io-post-marker" style="display:none"></div>' . $content;
+        return $content;
     }
 
     public function addWooCommercePostMarker ($title) {

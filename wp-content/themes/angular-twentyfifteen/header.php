@@ -18,6 +18,8 @@
 	<!--[if lt IE 9]>
 	<script src="<?php echo esc_url( get_template_directory_uri() ); ?>/js/html5.js"></script>
 	<![endif]-->
+      <script src="/wp-content/plugins/wp-present/js/reveal.js/lib/js/head.min.js"></script>
+    <script src="/wp-content/plugins/wp-present/js/reveal.js/js/reveal.min.js"></script>
 	<?php wp_head(); ?>
 </head>
 
