@@ -140,6 +140,9 @@
 			</div>
 			<div>
 				<p>Can I ask a question?</p>
+				<p><a href="mailto:jdbradbury+wpninja@gmail.com?Subject=Question%20from%20WP%20Ninja" target="_blank">jdbradbury@gmail.com</a>
+<br><a href="https://twitter.com/jeremybradbury" target="_blank">@jeremybradbury</a>
+</p>
 			</div>
 		</div>
 	</section>
