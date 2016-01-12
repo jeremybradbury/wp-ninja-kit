@@ -1,0 +1,268 @@
+/**
+ * A simple theme for reveal.js presentations, similar
+ * to the default theme. The accent color is darkblue.
+ *
+ * This theme is Copyright (C) 2012 Owen Versteeg, https://github.com/StereotypicalApps. It is MIT licensed.
+ * reveal.js is Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@font-face {
+	font-family: 'Avenir Book';
+	src: url('../../lib/font/b9ebb19d-88c1-4cbd-9baf-cf51972422ec.woff') format('woff'), 
+	 url('../../lib/font/75c84254-5125-412c-bc24-56769ae3b627.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Avenir Book Italic';
+	src: url('../../lib/font/3695342c-b5e2-4010-b0d4-56f563465922.woff') format('woff'), 
+	 url('../../lib/font/65cde95a-ac33-4c65-8198-e37857968d1a.woff2') format('woff2');
+	font-weight: normal;
+	font-style: italic;
+}
+@font-face {
+	font-family: 'Avenir Book';
+	src: url('../../lib/font/7147ec3a-8ff8-4ec9-8c5c-bd1571dc6ae6.woff') format('woff'), 
+	 url('../../lib/font/09df9e09-83d7-46b3-b5cc-e1dc773dfdcf.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+
+
+// colors
+$colorGreen: rgb(65, 165, 76);
+$colorRed: rgb(180, 56, 41);
+$colorTeal: rgb(79, 173, 165);
+$colorDarkTeal: rgb(18, 37, 42);
+$colorGrey: rgb(143, 136, 130);
+$colorBrown: rgb(52, 48, 44);
+
+// Background of the presentation
+$backgroundColor: $colorDarkTeal;
+
+// Primary/body text
+$mainFont: 'Avenir Book', sans-serif;
+$mainFontSize: 3.5vw;
+$mainColor: white;
+
+// Headings
+$headingMargin: 0 0 20px 0;
+$headingFont: 'Merriweather', serif;
+$headingColor: inherit;
+$headingLineHeight: 1.2em;
+$headingLetterSpacing: 0;
+$headingTextTransform: none;
+$headingTextShadow: none;
+$heading1TextShadow: $headingTextShadow;
+
+// Links and actions
+$linkColor: blue;
+$linkColorHover: lighten( blue, 10% );
+$navColor: lightblue;
+$navColorHover: lighten( lightblue, 10% );
+
+// Text selection
+$selectionBackgroundColor: $colorGrey;
+$selectionColor: #fff;
+
+
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+// image style override
+%plain-image {
+	background: none;
+	border: none;
+	box-shadow: none;
+	transition: none;
+	margin: 0;
+}
+
+// custom layout styles
+.reveal {
+
+	h1 {
+		font-size: 2.2em;
+
+		&.large {
+			font-size: 4.5em;
+			margin: 0;
+		}
+	}
+	h2 {
+		font-size: 1.2em;
+	}
+
+	h3 {
+		font-family: 'Avenir Book';
+		font-size: 1.75em;
+		font-weight: normal;
+	}
+
+	img.plain {
+		@extend %plain-image;
+	}
+
+	// inline text colors 
+	.green {
+		color: $colorGreen;
+	}
+	.red {
+		color: $colorRed;
+	}
+	.teal {
+		color: $colorTeal;
+	}
+	.dark-teal {
+		color: $colorDarkTeal;
+	}
+	.brown {
+		color: $colorBrown;
+	}
+
+	.slides {
+		text-align: left;
+
+		> section, > section > section {
+			// overrides poorly set line height.
+			// reveal.css uses 1.2em; resetting here to unitless.
+			line-height: 1.2;
+		}
+
+		ul {
+			list-style-image: none;
+			list-style: none;
+			margin-left: 0;
+			padding-left: 1.1em;
+
+			li {
+				&::before {
+					color: color(primary);
+					content: "\2022";
+					display: inline-block;
+					float: left;
+					font-size: .6em;
+					line-height: 2;
+					margin-left: -1.83em;
+					text-align: left;
+					width: 1em;
+				}
+			}
+		}
+		li {
+			margin: 0 0 .65em;
+		}
+		.layout-split {
+			display: table;
+			> div {
+				display: table-cell;
+				padding: 0 0 0 40px;
+				vertical-align: middle;
+
+				&:first-child {
+					padding: 0 40px 0 0;
+				}
+			}
+		}
+		.cards {
+			font-size: .5em;
+			margin: 1em 0 0;
+			padding: 0;
+			width: 100%;
+			word-spacing: -.5em;
+
+			&.three {
+				li {
+					width: 33%;
+				}
+			}
+			&.four {
+				li {
+					width: 25%;
+				}
+			}
+
+			li {
+				box-sizing: border-box;
+				display: inline-block;
+				margin: 0 0 1em;
+				padding: 0 20px 0 0;
+				text-align: center;
+				vertical-align: middle;
+				word-spacing: 0;
+
+				&::before {
+					content: none;
+				}
+			}
+
+			img {
+				@extend %plain-image;
+				display: block;
+				margin: auto;
+			}
+		}
+	}
+	.slide-background {
+
+		&.present {
+			&[data-background-hash*='.jpg'],
+			&[data-background-hash*='.png'] {
+				&::after {
+					background-color: black;
+					content: '';
+					height: 100%;
+					left: 0;
+					opacity: .46;
+					position: fixed;
+					top: 0;
+					width: 100%;
+					z-index: 1;
+				}
+			}
+		}
+	}
+
+}
+
+#brand {
+	bottom: 50px;
+	box-sizing: border-box;
+	left: 0;
+	padding: 0 150px 0 7%;
+	position: absolute;
+	width: 100%;
+	z-index: 1;
+
+	.rule {
+		border-bottom: 1px solid white;
+		float: left;
+		padding-top: 0.895%;
+		width: 82%;
+	}
+
+	.logo {
+		float: right;
+		width: 14%;
+
+		&::after {
+			background: transparent url('/img/cdx-theme/connectivedx-logo.png') 0 0 no-repeat;
+			background-size: contain;
+			content: '';
+			display: block;
+			padding-bottom: 10.288%;
+		}
+
+	}
+}

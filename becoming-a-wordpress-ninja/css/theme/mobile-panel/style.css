@@ -1,0 +1,43 @@
+.slide {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height:100%;
+  background-size:cover; 
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+
+.slide h2 {
+  color:#0fec55;
+  font-size: 1.75em;
+  font-weight: bold;
+  padding-top: .25em;
+  padding-bottom: .25em;
+  margin: 0 0 .66666em 0;
+}
+
+.slide h3 {
+	color:#f11616;
+}
+
+.slide p {
+	margin-left: 5%;
+	width:95%;
+	text-align: left;
+	color:black;
+}
+
+.slide ul {
+	float:left;
+	margin-left: 7.5%;
+	width:50%;
+	color:black;
+}
+
+.slide img {
+	top:-0.75em;
+	margin-left: 50%;
+	margin-right: 50%;
+	position: relative;
+}

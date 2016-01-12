@@ -1,0 +1,28 @@
+{
+	"themeImages" : "/img/cdx-theme/",
+	"date" : "July 17, 2014",
+	"description" : " A description of this presentation",
+	"author" : "Author/s name/s",
+	"theme" : "Toolbox",
+	"revealConfig" : {
+		"controls": "true",
+		"progress": "true",
+		"history": "true",
+		"center": "true",
+		"width": "'90%'",
+		"height": "'90%'",
+		"transition": "'linear'",
+		"dependencies": [
+			{ "src": "'/lib/js/classList.js'", "condition": "function() { return !document.body.classList; }" },
+			{ "src": "'/plugin/markdown/marked.js'", "condition": "function() { return !!document.querySelector( '[data-markdown]' ); }" },
+			{ "src": "'/plugin/markdown/markdown.js'", "condition": "function() { return !!document.querySelector( '[data-markdown]' ); }" },
+			{ "src": "'/plugin/syntaxhighlighter/shCore.js'", "async": "true" },
+			{ "src": "'/plugin/syntaxhighlighter/shBrushSass.js'", "async": "true" },
+			{ "src": "'/plugin/syntaxhighlighter/shBrushCSharp.js'", "async": "true" },
+			{ "src": "'/plugin/syntaxhighlighter/shBrushPHP.js'", "async": "true" },
+			{ "src": "'/plugin/syntaxhighlighter/shBrushJScript.js'", "async": "true", "callback": "function() { SyntaxHighlighter.all(); }" },
+			{ "src": "'/plugin/zoom-js/zoom.js'", "async": "true", "condition": "function() { return !!document.body.classList; }" },
+			{ "src": "'/plugin/notes/notes.js'", "async": "true", "condition": "function() { return !!document.body.classList; }" }
+		]
+	}
+}

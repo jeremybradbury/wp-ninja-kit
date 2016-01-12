@@ -1,0 +1,28 @@
+{
+	"themeImages" : "/img/cdx-theme/",
+	"date" : "September 23, 2015",
+	"description" : "Jeremy shows off new Wordpress capabilities.",
+	"author" : "Jeremy Bradbury",
+	"theme" : "Toolkit and workflow",
+	"revealConfig" : {
+		"controls": "true",
+		"progress": "true",
+		"history": "true",
+		"center": "true",
+		"width": "'90%'",
+		"height": "'90%'",
+		"transition": "'linear'",
+		"dependencies": [
+			{ "src": "'/becoming-a-wordpress-ninja/lib/js/classList.js'", "condition": "function() { return !document.body.classList; }" },
+			{ "src": "'/becoming-a-wordpress-ninja/plugin/markdown/marked.js'", "condition": "function() { return !!document.querySelector( '[data-markdown]' ); }" },
+			{ "src": "'/becoming-a-wordpress-ninja/plugin/markdown/markdown.js'", "condition": "function() { return !!document.querySelector( '[data-markdown]' ); }" },
+			{ "src": "'/becoming-a-wordpress-ninja/plugin/syntaxhighlighter/shCore.js'", "async": "true" },
+			{ "src": "'/becoming-a-wordpress-ninja/plugin/syntaxhighlighter/shBrushSass.js'", "async": "true" },
+			{ "src": "'/becoming-a-wordpress-ninja/plugin/syntaxhighlighter/shBrushCSharp.js'", "async": "true" },
+			{ "src": "'/becoming-a-wordpress-ninja/plugin/syntaxhighlighter/shBrushPHP.js'", "async": "true" },
+			{ "src": "'/becoming-a-wordpress-ninja/plugin/syntaxhighlighter/shBrushJScript.js'", "async": "true", "callback": "function() { SyntaxHighlighter.all(); }" },
+			{ "src": "'/becoming-a-wordpress-ninja/plugin/zoom-js/zoom.js'", "async": "true", "condition": "function() { return !!document.body.classList; }" },
+			{ "src": "'/becoming-a-wordpress-ninja/plugin/notes/notes.js'", "async": "true", "condition": "function() { return !!document.body.classList; }" }
+		]
+	}
+}

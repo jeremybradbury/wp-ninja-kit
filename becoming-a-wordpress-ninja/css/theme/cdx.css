@@ -1,0 +1,318 @@
+/**
+ * A simple theme for reveal.js presentations, similar
+ * to the default theme. The accent color is darkblue.
+ *
+ * This theme is Copyright (C) 2012 Owen Versteeg, https://github.com/StereotypicalApps. It is MIT licensed.
+ * reveal.js is Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ */
+@font-face {
+  font-family: 'Avenir Book';
+  src: url("../../lib/font/b9ebb19d-88c1-4cbd-9baf-cf51972422ec.woff") format("woff"), url("../../lib/font/75c84254-5125-412c-bc24-56769ae3b627.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Avenir Book Italic';
+  src: url("../../lib/font/3695342c-b5e2-4010-b0d4-56f563465922.woff") format("woff"), url("../../lib/font/65cde95a-ac33-4c65-8198-e37857968d1a.woff2") format("woff2");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Avenir Book';
+  src: url("../../lib/font/7147ec3a-8ff8-4ec9-8c5c-bd1571dc6ae6.woff") format("woff"), url("../../lib/font/09df9e09-83d7-46b3-b5cc-e1dc773dfdcf.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+body {
+  background: #12252a;
+  background-color: #12252a;
+}
+
+.reveal {
+  font-family: "Avenir Book", sans-serif;
+  font-size: 3.5vw;
+  font-weight: normal;
+  letter-spacing: -0.02em;
+  color: white;
+}
+
+::selection {
+  color: white;
+  background: #8f8882;
+  text-shadow: none;
+}
+
+/*********************************************
+ * HEADERS
+ *********************************************/
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  margin: 0 0 20px 0;
+  color: inherit;
+  font-family: "Merriweather", serif;
+  line-height: 1.2em;
+  letter-spacing: 0;
+  text-transform: none;
+  text-shadow: none;
+}
+
+.reveal h1 {
+  text-shadow: none;
+}
+
+/*********************************************
+ * LINKS
+ *********************************************/
+.reveal a:not(.image) {
+  color: blue;
+  text-decoration: none;
+  -webkit-transition: color .15s ease;
+  -moz-transition: color .15s ease;
+  -ms-transition: color .15s ease;
+  -o-transition: color .15s ease;
+  transition: color .15s ease;
+}
+
+.reveal a:not(.image):hover {
+  color: #3333ff;
+  text-shadow: none;
+  border: none;
+}
+
+.reveal .roll span:after {
+  color: #fff;
+  background: #0000b3;
+}
+
+/*********************************************
+ * IMAGES
+ *********************************************/
+.reveal section img {
+  margin: 15px 0px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  -webkit-transition: all .2s linear;
+  -moz-transition: all .2s linear;
+  -ms-transition: all .2s linear;
+  -o-transition: all .2s linear;
+  transition: all .2s linear;
+}
+
+.reveal a:hover img {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: blue;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
+}
+
+/*********************************************
+ * NAVIGATION CONTROLS
+ *********************************************/
+.reveal .controls div.navigate-left,
+.reveal .controls div.navigate-left.enabled {
+  border-right-color: lightblue;
+}
+
+.reveal .controls div.navigate-right,
+.reveal .controls div.navigate-right.enabled {
+  border-left-color: lightblue;
+}
+
+.reveal .controls div.navigate-up,
+.reveal .controls div.navigate-up.enabled {
+  border-bottom-color: lightblue;
+}
+
+.reveal .controls div.navigate-down,
+.reveal .controls div.navigate-down.enabled {
+  border-top-color: lightblue;
+}
+
+.reveal .controls div.navigate-left.enabled:hover {
+  border-right-color: #d4ebf2;
+}
+
+.reveal .controls div.navigate-right.enabled:hover {
+  border-left-color: #d4ebf2;
+}
+
+.reveal .controls div.navigate-up.enabled:hover {
+  border-bottom-color: #d4ebf2;
+}
+
+.reveal .controls div.navigate-down.enabled:hover {
+  border-top-color: #d4ebf2;
+}
+
+/*********************************************
+ * PROGRESS BAR
+ *********************************************/
+.reveal .progress {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.reveal .progress span {
+  background: blue;
+  -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -ms-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -o-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+}
+
+/*********************************************
+ * SLIDE NUMBER
+ *********************************************/
+.reveal .slide-number {
+  color: blue;
+}
+
+.reveal img.plain, .reveal .slides .cards img {
+  background: none;
+  border: none;
+  box-shadow: none;
+  transition: none;
+  margin: 0;
+}
+
+.reveal h1 {
+  font-size: 2.2em;
+}
+.reveal h1.large {
+  font-size: 4.5em;
+  margin: 0;
+}
+.reveal h2 {
+  font-size: 1.2em;
+}
+.reveal h3 {
+  font-family: 'Avenir Book';
+  font-size: 1.75em;
+  font-weight: normal;
+}
+.reveal .green {
+  color: #41a54c;
+}
+.reveal .red {
+  color: #b43829;
+}
+.reveal .teal {
+  color: #4fada5;
+}
+.reveal .dark-teal {
+  color: #12252a;
+}
+.reveal .brown {
+  color: #34302c;
+}
+.reveal .slides {
+  text-align: left;
+}
+.reveal .slides > section, .reveal .slides > section > section {
+  line-height: 1.2;
+}
+.reveal .slides ul {
+  list-style-image: none;
+  list-style: none;
+  margin-left: 0;
+  padding-left: 1.1em;
+}
+.reveal .slides ul li::before {
+  color: color(primary);
+  content: "\2022";
+  display: inline-block;
+  float: left;
+  font-size: .6em;
+  line-height: 2;
+  margin-left: -1.83em;
+  text-align: left;
+  width: 1em;
+}
+.reveal .slides li {
+  margin: 0 0 .65em;
+}
+.reveal .slides .layout-split {
+  display: table;
+}
+.reveal .slides .layout-split > div {
+  display: table-cell;
+  padding: 0 0 0 40px;
+  vertical-align: middle;
+}
+.reveal .slides .layout-split > div:first-child {
+  padding: 0 40px 0 0;
+}
+.reveal .slides .cards {
+  font-size: .5em;
+  margin: 1em 0 0;
+  padding: 0;
+  width: 100%;
+  word-spacing: -.5em;
+}
+.reveal .slides .cards.three li {
+  width: 33%;
+}
+.reveal .slides .cards.four li {
+  width: 25%;
+}
+.reveal .slides .cards li {
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 0 0 1em;
+  padding: 0 20px 0 0;
+  text-align: center;
+  vertical-align: middle;
+  word-spacing: 0;
+}
+.reveal .slides .cards li::before {
+  content: none;
+}
+.reveal .slides .cards img {
+  display: block;
+  margin: auto;
+}
+.reveal .slide-background.present[data-background-hash*='.jpg']::after, .reveal .slide-background.present[data-background-hash*='.png']::after {
+  background-color: black;
+  content: '';
+  height: 100%;
+  left: 0;
+  opacity: .46;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+#brand {
+  bottom: 50px;
+  box-sizing: border-box;
+  left: 0;
+  padding: 0 150px 0 7%;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+#brand .rule {
+  border-bottom: 1px solid white;
+  float: left;
+  padding-top: 0.895%;
+  width: 82%;
+}
+#brand .logo {
+  float: right;
+  width: 14%;
+}
+#brand .logo::after {
+  background: transparent url("/img/cdx-theme/connectivedx-logo.png") 0 0 no-repeat;
+  background-size: contain;
+  content: '';
+  display: block;
+  padding-bottom: 10.288%;
+}
