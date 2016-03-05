@@ -72,8 +72,8 @@
 <div class="container">	
 	<h1><?php if($chronicle_theme_options['home_service_title']!='') { 
 		echo esc_attr($chronicle_theme_options['home_service_title']);
-		} if($chronicle_theme_options['home_service_title']!='') {
-		echo "<b>".esc_attr($chronicle_theme_options['home_service_title'])."</b>";
+		} if($chronicle_theme_options['home_service_description']!='') {
+		echo "<b>".esc_attr($chronicle_theme_options['home_service_description'])."</b>";
 	} ?>
     </h1>	
     <div class="clearfix margin_top4"></div>    

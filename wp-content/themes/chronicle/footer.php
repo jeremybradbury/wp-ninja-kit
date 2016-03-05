@@ -84,6 +84,7 @@
 </div><!-- end copyright info -->
 <a href="#" class="scrollup"><?php _e('Scroll', 'chronicle'); ?></a><!-- end scroll to top of the page-->	
 </div> <!-- end of header wrapper div -->
+<?php get_template_part('font'); ?>
 <?php wp_footer(); ?>
 </body>
 </html>

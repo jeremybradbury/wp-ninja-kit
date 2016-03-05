@@ -83,14 +83,23 @@
 		//footer customization 
 		'footer_customizations' => 'Copyright @ 2015 WordPress.',
 		'developed_by_text' => ' Developed By',
-		'developed_by_chronicle_text' => 'Weblizar',
+		'developed_by_chronicle_text' => 'chronicle',
 		'developed_by_link' => 'https://www.weblizar.com',
 		
 		'terms_of_use_text' =>'Terms of Use',
 		'terms_of_use_link' =>'#',
 		
 		'Privacy_policy_text' =>'Privacy Policy',
-		'Privacy_policy_link' =>'#');
+		'Privacy_policy_link' =>'#',
+		
+		// Font Options
+		'title_font' => 'Open Sans',
+		'desc_font' => 'Open Sans',
+		'btn_font' => 'Open Sans',
+		'heading_title_font' => 'Open Sans',
+		'sidebar_title_font' => 'Open Sans',
+		'sidebar_desc_font' => 'Open Sans',
+		);
 		
 	return apply_filters( 'chronicle_theme_options', $chronicle_theme_options );
 }
@@ -204,7 +213,7 @@
 			//footer customization 
 			$chronicle_theme_options['footer_customizations']='Copyright @ 2015 WordPress.';
 			$chronicle_theme_options['developed_by_text']=' Developed By';
-			$chronicle_theme_options['developed_by_chronicle_text']='Weblizar';
+			$chronicle_theme_options['developed_by_chronicle_text']='chronicle';
 			$chronicle_theme_options['developed_by_link']='https://www.weblizar.com';
 		
 			$chronicle_theme_options['terms_of_use_text']='Terms of Use';

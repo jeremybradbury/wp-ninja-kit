@@ -4,8 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>" charset="<?php bloginfo('charset'); ?>" /> 
-	<?php
-		$chronicle_theme_options = chronicle_get_options(); ?>
+	<?php $chronicle_theme_options = chronicle_get_options(); ?>
 	<?php if($chronicle_theme_options['upload_image_favicon']!=''){ ?>
 	<link rel="shortcut icon" href="<?php  echo esc_url($chronicle_theme_options['upload_image_favicon']); ?>" /> 
 	<?php } ?>	
@@ -21,6 +20,7 @@
     <div class="container">    
     <!-- Logo -->
     <div class="logo">
+	<?php //var_dump ( $chronicle_theme_options['title_font']); ?>
 		<a href="<?php echo esc_url(home_url( '/' )); ?>" style="color:#<?php if(header_textcolor()){ echo header_textcolor();} ?>" id="logo" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
 		<?php 
 		if($chronicle_theme_options['upload_image_logo']!='')	{ ?>

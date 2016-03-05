@@ -19,9 +19,9 @@ function chronicle_customizer( $wp_customize ) {
 			'capabilit'=>'edit_theme_options',
             'priority' => 35,
 			
-        )
-    ); 
-		$wl_theme_options = chronicle_get_options();
+        ) ); 
+	
+	$wl_theme_options = chronicle_get_options();
 	$wp_customize->add_setting(
 		'chronicle_theme_options[_frontpage]',
 		array(
@@ -100,6 +100,100 @@ function chronicle_customizer( $wp_customize ) {
 		'settings'   => 'chronicle_theme_options[upload_image_favicon]',
 	) ) );
 	
+	/* Font Section*/
+	$wp_customize->add_section('font_sec', array(
+	    'title' => __('Theme Google Font', 'chronicle'),
+		'panel' => 'chronicle_theme_option',
+		'description' => __('Here you can change your theme\'s Font Settings', 'chronicle'),
+		'capability' => 'edit_theme_options',
+		'priority' => 43,
+		));
+	$wp_customize->add_setting(
+		'chronicle_theme_options[title_font]',
+		array(
+			'type'    => 'option',
+			'default'=>$wl_theme_options['title_font'],
+			'capability' => 'edit_theme_options',
+			'sanitize_callback'=>'chronicle_sanitize_text',
+		));
+		$wp_customize->add_control(new chronicle_Font_Control($wp_customize, 'title_font', array(
+		'label'        => __('Title Font', 'chronicle'),
+		'type'=>'option',
+		'section'    => 'font_sec',
+		'settings'   => 'chronicle_theme_options[title_font]',
+	    )));
+		
+	$wp_customize->add_setting(
+		'chronicle_theme_options[desc_font]',
+		array(
+			'type'    => 'option',
+			'default'=>$wl_theme_options['desc_font'],
+			'capability' => 'edit_theme_options',
+			'sanitize_callback'=>'chronicle_sanitize_text',
+		));
+	$wp_customize->add_control(new chronicle_Font_Control($wp_customize, 'desc_font', array(
+		'label'        => __('Description Font', 'chronicle'),
+		'type'=>'option',
+		'section'    => 'font_sec',
+		'settings'   => 'chronicle_theme_options[desc_font]',
+	    )));
+	$wp_customize->add_setting(
+		'chronicle_theme_options[btn_font]',
+		array(
+			'type'    => 'option',
+			'default'=>$wl_theme_options['btn_font'],
+			'capability' => 'edit_theme_options',
+			'sanitize_callback'=>'chronicle_sanitize_text',
+		));
+	$wp_customize->add_control(new chronicle_Font_Control($wp_customize, 'btn_font', array(
+		'label'        => __('Button Font', 'chronicle'),
+		'type'=>'option',
+		'section'    => 'font_sec',
+		'settings'   => 'chronicle_theme_options[btn_font]',
+	    )));
+	$wp_customize->add_setting(
+		'chronicle_theme_options[heading_title_font]',
+		array(
+			'type'    => 'option',
+			'default'=>$wl_theme_options['heading_title_font'],
+			'capability' => 'edit_theme_options',
+			'sanitize_callback'=>'chronicle_sanitize_text',
+		));
+	$wp_customize->add_control(new chronicle_Font_Control($wp_customize, 'heading_title_font', array(
+		'label'        => __('Area Heading Title Font', 'chronicle'),
+		'type'=>'option',
+		'section'    => 'font_sec',
+		'settings'   => 'chronicle_theme_options[heading_title_font]',
+	    )));
+	$wp_customize->add_setting(
+		'chronicle_theme_options[sidebar_title_font]',
+		array(
+			'type'    => 'option',
+			'default'=>$wl_theme_options['sidebar_title_font'],
+			'capability' => 'edit_theme_options',
+			'sanitize_callback'=>'chronicle_sanitize_text',
+		));
+	$wp_customize->add_control(new chronicle_Font_Control($wp_customize, 'sidebar_title_font', array(
+		'label'        => __('Sidebar Title Font', 'chronicle'),
+		'type'=>'option',
+		'section'    => 'font_sec',
+		'settings'   => 'chronicle_theme_options[sidebar_title_font]',
+	    )));
+	$wp_customize->add_setting(
+		'chronicle_theme_options[sidebar_desc_font]',
+		array(
+			'type'    => 'option',
+			'default'=>$wl_theme_options['sidebar_desc_font'],
+			'capability' => 'edit_theme_options',
+			'sanitize_callback'=>'chronicle_sanitize_text',
+		));
+	$wp_customize->add_control(new chronicle_Font_Control($wp_customize, 'sidebar_desc_font', array(
+		'label'        => __('Sidebar Description Font', 'chronicle'),
+		'type'=>'option',
+		'section'    => 'font_sec',
+		'settings'   => 'chronicle_theme_options[sidebar_desc_font]',
+	    )));
+		
 	/* Slider Section */
 	$wp_customize->add_section(
         'slider_sec',
@@ -393,7 +487,7 @@ function chronicle_customizer( $wp_customize ) {
 	}
 	/* Blog Option */
 	$wp_customize->add_section('blog_section',array(
-	'title'=>__("Home Blog Options","weblizar"),
+	'title'=>__("Home Blog Options","chronicle"),
 	'panel'=>'chronicle_theme_option',
 	'capabilit'=>'edit_theme_options',
     'priority' => 40
@@ -416,7 +510,7 @@ function chronicle_customizer( $wp_customize ) {
 	
 	/* Service Section */
 	$wp_customize->add_section('service_section',array(
-	'title'=>__("Service Options","weblizar"),
+	'title'=>__("Service Options","chronicle"),
 	'panel'=>'chronicle_theme_option',
 	'capabilit'=>'edit_theme_options',
     'priority' => 38,
@@ -628,7 +722,7 @@ function chronicle_customizer( $wp_customize ) {
 	) );
 	/* Social options */
 	$wp_customize->add_section('social_section',array(
-	'title'=>__("Social Options","weblizar"),
+	'title'=>__("Social Options","chronicle"),
 	'panel'=>'chronicle_theme_option',
 	'capabilit'=>'edit_theme_options',
     'priority' => 42
@@ -801,7 +895,7 @@ function chronicle_customizer( $wp_customize ) {
 	) );
 	/* Footer Callout */
 	$wp_customize->add_section('callout_section',array(
-	'title'=>__("Footer Call-Out Options","weblizar"),
+	'title'=>__("Footer Call-Out Options","chronicle"),
 	'panel'=>'chronicle_theme_option',
 	'capabilit'=>'edit_theme_options',
     'priority' => 37
@@ -884,7 +978,7 @@ $wp_customize->add_control( 'chronicle_btn_link_2', array(
 
 	/* Footer Options */
 	$wp_customize->add_section('footer_section',array(
-	'title'=>__("Footer Options","weblizar"),
+	'title'=>__("Footer Options","chronicle"),
 	'panel'=>'chronicle_theme_option',
 	'capabilit'=>'edit_theme_options',
     'priority' => 41
@@ -950,6 +1044,10 @@ $wp_customize->add_control( 'chronicle_btn_link_2', array(
 		'section'    => 'footer_section',
 		'settings'   => 'chronicle_theme_options[developed_by_link]'
 	) );
+	
+
+	
+	
 		$wp_customize->add_section( 'chronicle_more' , array(
 				'title'      	=> __( 'Upgrade to Chronicle Premium', 'chronicle' ),
 				'priority'   	=> 999,
@@ -1050,6 +1148,78 @@ class More_chronicle_Control extends WP_Customize_Control {
 		</label>		
 		<?php
 	}
+}
+endif;
+
+/* For Font Control */
+if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'chronicle_Font_Control' ) ) :
+class chronicle_Font_Control extends WP_Customize_Control 
+{  
+ public function render_content() 
+ {?>
+   <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+   <select <?php $this->link(); ?> >
+    <option  value="Abril Fatface"<?php if($this->value()== 'Abril Fatface') echo 'selected="selected"';?>><?php _e('Abril Fatface','chronicle'); ?></option>
+	<option  value="Advent Pro"<?php if($this->value()== 'Advent Pro')  echo 'selected="selected"';?>><?php _e('Advent Pro','chronicle'); ?></option>
+	<option  value="Aldrich"<?php if($this->value()== 'Aldrich') echo 'selected="selected"';?>><?php _e('Aldrich','chronicle'); ?></option>
+	<option  value="Alex Brush"<?php if($this->value()== 'Alex Brush') echo 'selected="selected"';?>><?php _e('Alex Brush','chronicle'); ?></option>
+	<option  value="Allura"<?php if($this->value()== 'Allura') echo 'selected="selected"';?>><?php _e('Allura','chronicle'); ?></option>
+	<option  value="Amatic SC"<?php if($this->value()== 'Amatic SC') echo 'selected="selected"';?>><?php _e('Amatic SC','chronicle'); ?></option>
+	<option  value="arial"<?php if($this->value()== 'arial') echo 'selected="selected"';?>><?php _e('Arial','chronicle'); ?></option>
+	<option  value="Astloch"<?php if($this->value()== 'Astloch') echo 'selected="selected"';?>><?php _e('Astloch','chronicle'); ?></option>
+	<option  value="arno pro bold italic"<?php if($this->value()== 'arno pro bold italic') echo 'selected="selected"';?>><?php _e('Arno pro bold italic','chronicle'); ?></option>
+	<option  value="Bad Script"<?php if($this->value()== 'Bad Script') echo 'selected="selected"';?>><?php _e('Bad Script','chronicle'); ?></option>
+	<option  value="Bilbo"<?php if($this->value()== 'Bilbo') echo 'selected="selected"';?>><?php _e('Bilbo','chronicle'); ?></option>
+	<option  value="Calligraffitti"<?php if($this->value()== 'Calligraffitti') echo 'selected="selected"';?>><?php _e('Calligraffitti','chronicle'); ?></option>
+	<option  value="Candal"<?php if($this->value()== 'Candal') echo 'selected="selected"';?>><?php _e('Candal','chronicle'); ?></option>
+	<option  value="Cedarville Cursive"<?php if($this->value()== 'Cedarville Cursive') echo 'selected="selected"';?>><?php _e('Cedarville Cursive','chronicle'); ?></option>
+	<option  value="Clicker Script"<?php if($this->value()== 'Clicker Script') echo 'selected="selected"';?>><?php _e('Clicker Script','chronicle'); ?></option>
+	<option  value="Dancing Script"<?php if($this->value()== 'Dancing Script') echo 'selected="selected"';?>><?php _e('Dancing Script','chronicle'); ?></option>
+	<option  value="Dawning of a New Day"<?php if($this->value()== 'Dawning of a New Day') echo 'selected="selected"';?>><?php _e('Dawning of a New Day','chronicle'); ?></option>
+	<option  value="Fredericka the Great"<?php if($this->value()== 'Fredericka the Great') echo 'selected="selected"';?>><?php _e('Fredericka the Great','chronicle'); ?></option>
+	<option  value="Felipa"<?php if($this->value()== 'Felipa') echo 'selected="selected"';?>><?php _e('Felipa','chronicle'); ?></option>
+	<option  value="Give You Glory"<?php if($this->value()== 'Give You Glory') echo 'selected="selected"';?>><?php _e('Give You Glory','chronicle'); ?></option>
+	<option  value="Great vibes"<?php if($this->value()== 'Great vibes') echo 'selected="selected"';?>><?php _e('Great vibes','chronicle'); ?></option>
+	<option  value="Homemade Apple"<?php if($this->value()== 'Homemade Apple') echo 'selected="selected"';?>><?php _e('Homemade Apple','chronicle'); ?></option>
+	<option  value="Indie Flower"<?php if($this->value()== 'Indie Flower') echo 'selected="selected"';?>><?php _e('Indie Flower','chronicle'); ?></option>
+	<option  value="Italianno"<?php if($this->value()== 'Italianno') echo 'selected="selected"';?>><?php _e('Italianno','chronicle'); ?></option>
+	<option  value="Jim Nightshade"<?php if($this->value()== 'Jim Nightshade') echo 'selected="selected"';?>><?php _e('Jim Nightshade','chronicle'); ?></option>
+	<option  value="Kaushan Script"<?php if($this->value()== 'Kaushan Script') echo 'selected="selected"';?>><?php _e('Kaushan Script','chronicle'); ?></option>
+	<option  value="Kristi"<?php if($this->value()== 'Kristi') echo 'selected="selected"';?>><?php _e('Kristi','chronicle'); ?></option>
+	<option  value="La Belle Aurore"<?php if($this->value()== 'La Belle Aurore') echo 'selected="selected"';?>><?php _e('La Belle Aurore','chronicle'); ?></option>
+	<option  value="Meddon"<?php if($this->value()== 'Meddon') echo 'selected="selected"';?>><?php _e('Meddon','chronicle'); ?></option>
+	<option  value="Montez"<?php if($this->value()== 'Montez') echo 'selected="selected"';?>><?php _e('Montez','chronicle'); ?></option>
+	<option  value="Megrim"<?php if($this->value()== 'Megrim') echo 'selected="selected"';?>><?php _e('Megrim','chronicle'); ?></option>
+	<option  value="Mr Bedfort"<?php if($this->value()== 'Mr Bedfort') echo 'selected="selected"';?>><?php _e('Mr Bedfort','chronicle'); ?></option>
+	<option  value="Neucha"<?php if($this->value()== 'Neucha') echo 'selected="selected"';?>><?php _e('Neucha','chronicle'); ?></option>
+	<option  value="Nothing You Could Do"<?php if($this->value()== 'Nothing You Could Do') echo 'selected="selected"';?>><?php _e('Nothing You Could Do','chronicle'); ?></option>
+	<option  value="Open Sans"<?php if($this->value()== 'Open Sans') echo 'selected="selected"';?>><?php _e('Open Sans','chronicle'); ?></option>
+	<option  value="Over the Rainbow"<?php if($this->value()== 'Over the Rainbow') echo 'selected="selected"';?>><?php _e('Over the Rainbow','chronicle'); ?></option>
+	<option  value="Pinyon Script"<?php if($this->value()== 'Pinyon Script') echo 'selected="selected"';?>><?php _e('Pinyon Script','chronicle'); ?></option>
+	<option  value="Princess Sofia"<?php if($this->value()== 'Princess Sofia') echo 'selected="selected"';?>><?php _e('Princess Sofia','chronicle'); ?></option>
+	<option  value="Reenie Beanie"<?php if($this->value()== 'Reenie Beanie') echo 'selected="selected"';?>><?php _e('Reenie Beanie','chronicle'); ?></option>
+	<option  value="Rochester"<?php if($this->value()== 'Rochester') echo 'selected="selected"';?>><?php _e('Rochester','chronicle'); ?></option>
+	<option  value="Rock Salt"<?php if($this->value()== 'Rock Salt') echo 'selected="selected"';?>><?php _e('Rock Salt','chronicle'); ?></option>
+	<option  value="Ruthie"<?php if($this->value()== 'Ruthie') echo 'selected="selected"';?>><?php _e('Ruthie','chronicle'); ?></option>
+	<option  value="Sacramento"<?php if($this->value()== 'Sacramento') echo 'selected="selected"';?>><?php _e('Sacramento','chronicle'); ?></option>
+	<option  value="Sans Serif"<?php if($this->value()== 'Sans Serif') echo 'selected="selected"';?>><?php _e('Sans Serif','chronicle'); ?></option>
+	<option  value="Seaweed Script"<?php if($this->value()== 'Seaweed Script') echo 'selected="selected"';?>><?php _e('Seaweed Script','chronicle'); ?></option>
+	<option  value="Shadows Into Light"<?php if($this->value()== 'Shadows Into Light') echo 'selected="selected"';?>><?php _e('Shadows Into Light','chronicle'); ?></option>
+	<option  value="Smythe"<?php if($this->value()== 'Smythe') echo 'selected="selected"';?>><?php _e('Smythe','chronicle'); ?></option>
+	<option  value="Stalemate"<?php if($this->value()== 'Stalemate') echo 'selected="selected"';?>><?php _e('Stalemate','chronicle'); ?></option>
+	<option  value="Tahoma"<?php if($this->value()== 'Tahoma') echo 'selected="selected"';?>><?php _e('Tahoma','chronicle'); ?></option>
+	<option  value="Tangerine"<?php if($this->value()== 'Tangerine') echo 'selected="selected"';?>><?php _e('Tangerine','chronicle'); ?></option>
+	<option  value="Trade Winds"<?php if($this->value()== 'Trade Winds') echo 'selected="selected"';?>><?php _e('Trade Winds','chronicle'); ?></option>
+	<option  value="UnifrakturMaguntia"<?php if($this->value()== 'UnifrakturMaguntia') echo 'selected="selected"';?>><?php _e('UnifrakturMaguntia','chronicle'); ?></option>
+	<option  value="Verdana"<?php if($this->value()== 'Verdana') echo 'selected="selected"';?>><?php _e('Verdana','chronicle'); ?></option>
+	<option  value="Waiting for the Sunrise"<?php if($this->value()== 'Waiting for the Sunrise') echo 'selected="selected"';?>><?php _e('Waiting for the Sunrise','chronicle'); ?></option>
+	<option  value="Warnes"<?php if($this->value()== 'Warnes') echo 'selected="selected"';?>><?php _e('Warnes','chronicle'); ?></option>
+	<option  value="Yesteryear"<?php if($this->value()== 'Yesteryear') echo 'selected="selected"';?>><?php _e('Yesteryear','chronicle'); ?></option>
+	<option  value="Zeyada"<?php if($this->value()== 'Zeyada') echo 'selected="selected"';?>><?php _e('Zeyada','chronicle'); ?></option>
+    </select>		
+		
+  <?php
+ }
 }
 endif;
 ?>

@@ -89,9 +89,10 @@
 	* Guardian theme css and js
 	* ==================*/
 	function chronicle_scripts()
-	{	wp_enqueue_style('chronicle-style-sheet', get_stylesheet_uri());		
+	{
+		wp_enqueue_style('chronicle-style-sheet', get_stylesheet_uri());		
 		wp_enqueue_style('chronicle-reset', get_template_directory_uri() . '/css/chronicle-reset.css');
-		wp_enqueue_style('chronicle-font-awesome', get_template_directory_uri() . '/css/font-awesome/css/font-awesome.css');	
+		wp_enqueue_style('chronicle-font-awesome', get_template_directory_uri() . '/css/font-awesome-4.5.0/css/font-awesome.css');	
 		wp_enqueue_style('chronicle-lightbox', get_template_directory_uri() . '/css/chronicle-lightbox.css');
 		wp_enqueue_style('chronicle-animations', get_template_directory_uri() . '/css/chronicle-animations.css');		
 		wp_enqueue_style('chronicle-sticky-two', get_template_directory_uri() . '/css/chronicle-stickytwo.css');
@@ -116,7 +117,15 @@
 		if ( is_singular() ) wp_enqueue_script( "comment-reply" );
 	}
 	add_action('wp_enqueue_scripts', 'chronicle_scripts');
-	
+
+/*  Font Family */	
+ add_action('wp_enqueue_scripts', 'chronicle_font_family');
+ function chronicle_font_family()
+   {
+	 wp_register_style('googleFonts', 'http://fonts.googleapis.com/css?family=Rock+Salt|Neucha|Sans+Serif|Indie+Flower|Shadows+Into+Light|Dancing+Script|Kaushan+Script|Tangerine|Pinyon+Script|Great+Vibes|Bad+Script|Calligraffitti|Homemade+Apple|Allura|Megrim|Nothing+You+Could+Do|Fredericka+the+Great|Rochester|Arizonia|Astloch|Bilbo|Cedarville+Cursive|Clicker+Script|Dawning+of+a+New+Day|Ewert|Felipa|Give+You+Glory|Italianno|Jim+Nightshade|Kristi|La+Belle+Aurore|Meddon|Montez|Mr+Bedfort|Over+the+Rainbow|Princess+Sofia|Reenie+Beanie|Ruthie|Sacramento|Seaweed+Script|Stalemate|Trade+Winds|UnifrakturMaguntia|Waiting+for+the+Sunrise|Yesteryear|Zeyada|Warnes|Verdana|Abril+Fatface|Advent+Pro|Aldrich|Alex+Brush|Amatic+SC|Antic+Slab|Candal');
+     
+	 wp_enqueue_style ('googleFonts');
+    }
 	//code for image resize for according to image layout
 	add_filter( 'intermediate_image_sizes', 'chronicle_image_presets');
 	function chronicle_image_presets($sizes){

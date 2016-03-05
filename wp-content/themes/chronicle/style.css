@@ -1,14 +1,15 @@
-/*
+/*****
 Theme Name: Chronicle
 Author: weblizar
 Author URI: http://weblizar.com/
+Theme URI: http://weblizar.com/themes/chronicle/
 Description:Chronicle is an multi-purpose responsive theme coded & designed with a lot of care and love. You can use it for your business, portfolio, blogging or any type of site.Chronicle is Responsive and flexible based on BOOTSTRAP CSS framework that adapts your website to mobile devices and the desktop or any other viewing environment.We focused on usability across various devices, starting with smartphones.Chronicle is a Cross-Browser Compatible theme that works on All leading web browsers.Chronicle is Retina ready. In addition, footer widget display is automatically adjusted depending on how many are used.Chronicle has  Filkr as a custom widget to showing up your Flikr Photos .Custom menus to choose the menu in Primary Location that is in Header area of the site.In header area and footer of the theme offers Social Media Links to add your Social Links here. Chronicle  focusing on business template, awesome Caroufredsel slider, Powerful but simple Theme Options for full CMS control option to match your logo & website, wide layout, light & dark color skin, translation ready and many more. Chronicle is Woo-commerce Ready theme. Chronicle is now also compatible with "WPML Multi-Lingual" Plugin.
-Version:  1.4
+Version:  2.0
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: black, pink , dark, light, white, two-columns, custom-menu, right-sidebar, custom-background, sticky-post, theme-options, threaded-comments, featured-images, responsive-layout
 Text Domain: chronicle
-*/
+****/
 body {
 	padding: 0px;
 	margin: 0px;
@@ -43,13 +44,9 @@ body {
 	padding: 20px 0px 0px 0px;
 }
 .content_left {
-	float: left;
-	width: 71%;
 	padding: 20px 0px 0px 0px;
 }
 .right_sidebar {
-	float: right;
-	width: 25%;
 	padding: 20px 0px 0px 0px;
 }
 .left_sidebar {
@@ -112,6 +109,7 @@ body {
 	position: relative;
 	font-size:27px;
 	color:#fff;
+	text-decoration: none;
 }
 /* top navigation */
 .right_links {
@@ -129,7 +127,8 @@ body {
 	padding: 0px;
 }
 .right_links li a {
-	color: #999;
+	color: #999 !important;
+	text-decoration: none;
 }
 .right_links li a:hover {
 	color: #fff;
@@ -139,6 +138,7 @@ body {
 	font-size: 13px;
 	margin-right: 18px;
 	margin-top: 1px;
+	color: #999;
 }
 .right_links li.link i {
 	margin-right: 3px;
@@ -156,18 +156,14 @@ body {
 	margin-left: 5px;
 }
 .right_links li.social i {
-	color: #999;
+	color: #999 !important;
 }
 .right_links li.social:hover {
-	background-color: #999;
+	background-color: #999 !important;
 }
 .right_links li.social:hover i {
-	color: #fff;
+	color: #fff !important;
 }
-
-
-
-
 
 /* header area */
 .logo {
@@ -448,6 +444,7 @@ body {
 	border: 1px solid #fff;
 	border-radius: 3px;
 	padding: 5px 13px;
+	text-decoration: none;
 }
 .section5 .one_third a i {
 	color: #999;
@@ -2333,7 +2330,8 @@ ul.faddress {
 }
 .qlinks li a {
 	color: #727272;
-}
+	text-decoration: none;
+	}
 .qlinks li a:hover {
 	color: #fff;
 }
@@ -2423,6 +2421,7 @@ ul.faddress {
 	font-size: 12px;
 	color: #999;
 	text-align: right;
+	text-decoration: none !important;
 }
 .copyright_info a:hover {
 	color: #e3e3e3;
@@ -4293,6 +4292,7 @@ ul.post_meta_links_small {
 	color: #d3d3d3;
 	margin-top: 5px;
 	float: left;
+	text-decoration: none;
 }
 .comment_content .comment_text a:hover {
 	color: #727272;
@@ -4359,6 +4359,9 @@ ul.post_meta_links_small {
 .sidebar_widget ul.arrows_list1 li a {
 	color: #7ab700;
 	line-height: 30px;
+}
+.sidebar_widget a{
+	text-decoration: none !important;
 }
 .sidebar_widget ul.arrows_list1 li a:hover {
 	color: #383634;
@@ -4925,6 +4928,7 @@ a.knowmore_but:hover {
 	background-color: #7ab700;
 	-webkit-transition: background-color .3s, -webkit-transform .3s;
     transition: background-color .3s, transform .3s;
+	text-decoration: none !important;
 }
 .readmore_but9:hover {
 	color: #000;
@@ -5778,6 +5782,7 @@ ul.recentnews {
 .chronicle_home_portfolio_caption h3 a {
 	color: #404040;
 	font-size:22px;
+	text-decoration: none;
 }
 .chronicle_home_portfolio_caption small {
 	color: #777777;
@@ -5893,6 +5898,9 @@ float: right;
 text-align: right;
 width: 50%;
 }
+.nav-previous a, .nav-next a{
+	text-decoration: none !important;
+}
 #myCarousel  i{font-size:50px; margin-top:115%;}
 .carousel-caption {
 bottom: 30% !important;
@@ -5945,6 +5953,7 @@ width: 100%;
     padding:0px;
 	background-color:#f3f3f3;
 	line-height: 25px;
+	text-decoration: none;
 }
 #blog_title a:hover,
 .section5 .one_third a:hover,
@@ -6073,4 +6082,7 @@ a img.aligncenter {
 	top: 5px;
 	width: auto;
 	z-index: 100000; /* Above WP toolbar. */
+}
+.siteinfo p {
+    color: #999;
 }

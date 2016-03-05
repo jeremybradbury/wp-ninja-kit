@@ -2,7 +2,7 @@
 	<?php _e( 'This post is password protected. Enter the password to view any comments.', 'chronicle' ); ?></p>
 	<?php return; endif; ?>
     <?php if ( have_comments() ) : ?>
-	<h4><?php _e('Comments','chronicle'); ?></h4>
+	<h4 class="coment"><?php _e('Comments','chronicle'); ?></h4>
 	<div class="mar_top_bottom_lines_small3"></div>	
 	<?php wp_list_comments( array( 'callback' => 'chronicle_comment' ) ); ?>
 	<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
